@@ -1,26 +1,52 @@
 # ML_ALGORITHM_SCRATCH_NLP
 🧠** Custom HR Applicant Tracking System:** 12-Model EnsembleA comprehensive demonstration of 12 custom-built machine learning algorithms, synthesized into a weighted ensemble for predictive applicant screening.
 
+
+
 Welcome to the Custom HR Applicant Tracking System (ATS) repository. Rather than relying on standard libraries like scikit-learn for predictive modeling, this project implements 12 distinct machine learning algorithms entirely from scratch using core Python and NumPy.These algorithms are evaluated, weighted, and combined into an ensemble model designed to assess a candidate's suitability based on their interview transcript, resume, and the target job description.
 
-⚙️ System Architecture & WorkflowThe pipeline is designed to handle natural language data and route it through a multi-model decision framework:Data Ingestion: The script reads candidate Transcripts, Resumes, and Job Descriptions from a dataset.Feature Extraction: It concatenates the text and utilizes a TF-IDF (Term Frequency-Inverse Document Frequency) vectorizer to convert the textual data into numerical feature arrays.Model Training: 12 distinct algorithms are trained simultaneously on the extracted features.Ensemble Decision: The models vote on the outcome ("Select" or "Reject"), with their votes weighted by their historical accuracy on a hold-out test set.📊 Implemented AlgorithmsThe repository features both regression (interpreting outputs as probabilities) and classification models.
+
+**⚙️ System Architecture & WorkflowThe pipeline is designed to handle natural language data and route it through a multi-model decision framework:**
+
+
+Data Ingestion: The script reads candidate Transcripts, Resumes, and Job Descriptions from a dataset.
+Feature Extraction: It concatenates the text and utilizes a TF-IDF (Term Frequency-Inverse Document Frequency) vectorizer to convert the textual data into numerical feature arrays.
+Model Training: 12 distinct algorithms are trained simultaneously on the extracted features.
+Ensemble Decision: The models vote on the outcome ("Select" or "Reject"), with their votes weighted by their historical accuracy on a hold-out test set.
+
+
+📊 Implemented AlgorithmsThe repository features both regression (interpreting outputs as probabilities) and classification models.
 
 **All underlying mathematics and optimization steps are hard-coded**.
 Regression ModelsLinear Regression: Implemented using the Moore-Penrose pseudoinverse.
+
 Ridge Regression: Includes a custom L2 Regularization penalty to prevent overfitting.
+
 KNN Regressor: Distance-based neighbor averaging.
+
 Decision Tree Regressor: Built using variance-reduction splitting criteria.
+
 Random Forest Regressor: An aggregation of bootstrapped decision trees.
+
 Classification ModelsLogistic Regression: Optimized via gradient descent with sigmoid activation.
+
 Gaussian Naive Bayes: Based on probability distributions and prior calculations.
+
 KNN Classifier: Majority voting derived from nearest neighbors.
+
 Perceptron: A foundational neural network methodology.
+
 Linear SVM: Implemented utilizing hinge-loss approximation and gradient descent.
+
 Decision Tree Classifier: Node splitting driven by information gain metrics.
+
 Random Forest Classifier: Ensemble majority voting across randomized trees.
 
+
 ⚖️ **The Weighted Ensemble Mechanism** To maximize predictive accuracy, the system does not rely on a single algorithm. Instead, it utilizes a performance-weighted voting strategy:Evaluate & Rank: Every model is evaluated against a 20% testing split to calculate its baseline accuracy.
+
 Weight Calculation: Each model is assigned a specific weight based on the formula:$w = \max(0.001, \text{accuracy} - 0.5)$Note: Models that perform worse than random chance ($0.5$) are heavily penalized, while highly accurate models are given stronger influence.
+
 
 The Final Verdict: When evaluating a new applicant, all 12 models generate a prediction. These predictions are multiplied by their respective weights to produce a final Ensemble Score. A score of $\geq 0.5$ results in a "Selected" classification.
 
