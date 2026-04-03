@@ -10,8 +10,11 @@ Welcome to the Custom HR Applicant Tracking System (ATS) repository. Rather than
 
 
 Data Ingestion: The script reads candidate Transcripts, Resumes, and Job Descriptions from a dataset.
+
 Feature Extraction: It concatenates the text and utilizes a TF-IDF (Term Frequency-Inverse Document Frequency) vectorizer to convert the textual data into numerical feature arrays.
+
 Model Training: 12 distinct algorithms are trained simultaneously on the extracted features.
+
 Ensemble Decision: The models vote on the outcome ("Select" or "Reject"), with their votes weighted by their historical accuracy on a hold-out test set.
 
 
